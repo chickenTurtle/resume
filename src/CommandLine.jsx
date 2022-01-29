@@ -18,12 +18,16 @@ class CommandLine extends React.Component {
     this.state = {
       buffer: [""],
       typingAllowed: true,
+      history: [],
     };
+    this.tempHistory = "";
+    this.historyIndex = -1;
     this.promptRef = React.createRef();
     this._focus = this._focus.bind(this);
     this._appendToBuffer = this._appendToBuffer.bind(this);
     this._handleEnter = this._handleEnter.bind(this);
     this._handleKeyDown = this._handleKeyDown.bind(this);
+    this._handleHistory = this._handleHistory.bind(this);
   }
 
   _focus() {
@@ -31,11 +35,21 @@ class CommandLine extends React.Component {
   }
 
   _appendToBuffer(str) {
-    this.tempBuffer = [...this.tempBuffer, ...str.split("\n")];
+    this.tempBuffer = [...this.tempBuffer, str];
+  }
+
+  _handleHistory() {
+    if (this.historyIndex === -1)
+      this.promptRef.current.innerText = this.tempHistory;
+    else
+      this.promptRef.current.innerText = this.state.history[this.historyIndex];
   }
 
   _handleEnter() {
     this._appendToBuffer(this.props.prompt + this.promptRef.current.innerText);
+    this.setState({
+      history: [this.promptRef.current.innerText, ...this.state.history],
+    });
     const input = this.promptRef.current.innerText.trim();
     const commandName = /^([^\s]*)\s?.*$/.exec(input)?.pop();
 
@@ -80,6 +94,20 @@ class CommandLine extends React.Component {
         buffer: this.tempBuffer,
       });
     }
+    if (e.key === "ArrowUp") {
+      if (this.historyIndex === -1)
+        this.tempHistory = this.promptRef.current.innerText;
+      this.historyIndex =
+        this.historyIndex + 1 > this.state.history.length - 1
+          ? this.state.history.length - 1
+          : this.historyIndex + 1;
+      this._handleHistory();
+    }
+    if (e.key === "ArrowDown") {
+      this.historyIndex =
+        this.historyIndex - 1 < -1 ? -1 : this.historyIndex - 1;
+      this._handleHistory();
+    }
   }
 
   componentDidUpdate() {
@@ -93,14 +121,13 @@ class CommandLine extends React.Component {
   render() {
     const styles = this.props.styles || {};
     const lines = this.state.buffer.map((line, index) => (
-      <p key={index}>{line}</p>
+      <div key={index}>{line}</div>
     ));
-
     return (
       <div style={styles.cli} onClick={this._focus} className="react_cli">
         <div className="banner noselect">{this.props.banner.banner_text}</div>
         <Welcome text={this.props.banner.banner_welcome} />
-        {lines}
+        <>{lines}</>
         <p style={{ display: this.state.typingAllowed ? "block" : "none" }}>
           <span>{this.props.prompt}</span>
           <span

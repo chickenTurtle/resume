@@ -4,11 +4,15 @@
   font-size: calc(10px + 2vmin);
 }
 
+a {
+  color: teal
+}
+
 .top-window {
   height: 1.2em;
   background-color: rgb(59,58,56);
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   font-size: calc(10px + 1vmin);
 }
 
@@ -87,6 +91,10 @@
   outline: 0px solid transparent;
 }
 
+.bold {
+  text-shadow: 0 0 5px;
+}
+
 .banner {
   color: teal;
   text-shadow: 0 0 5px teal;
@@ -101,4 +109,18 @@
   white-space: pre-line;
   color: gray;
   margin-bottom: 2em;
+}
+
+ul {
+  margin: 0;
+  list-style-type: none;
+}
+
+ul > li {
+  text-indent: -5px;
+}
+
+ul > li:before {
+  content: "- ";
+  text-indent: -5px;
 }
