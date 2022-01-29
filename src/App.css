@@ -5,7 +5,7 @@
 }
 
 a {
-  color: teal
+  color: #005bbb
 }
 
 .top-window {
@@ -95,9 +95,17 @@ a {
   text-shadow: 0 0 5px;
 }
 
+.text-muted {
+  color: #839495
+}
+
+.text-teal {
+  color: #2aa197
+}
+
 .banner {
-  color: teal;
-  text-shadow: 0 0 5px teal;
+  color: #2aa197;
+  text-shadow: 0 0 5px #2aa197;
   line-height: normal;
   font-weight: bold;
   font-size: calc(1vw);
@@ -107,17 +115,13 @@ a {
 
 .banner-welcome {
   white-space: pre-line;
-  color: gray;
+  color: #839495;
   margin-bottom: 2em;
 }
 
 ul {
   margin: 0;
   list-style-type: none;
-}
-
-ul > li {
-  text-indent: -5px;
 }
 
 ul > li:before {

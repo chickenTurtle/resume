@@ -27,7 +27,7 @@ const skills = () => {
     ["C++", 6],
     ["C# and .NET", 7],
     ["SQL", 8],
-    ["Java", 9],
+    ["Java", 7],
     ["Python", 9],
     ["Go", 5],
     ["Fullstack web development", 8],
@@ -39,7 +39,7 @@ const skills = () => {
     const green = skill[1] < 5 ? 255 * (skill[1] / 10) : 255;
     return (
       <div id={key}>
-        <dt style={{ color: "gray" }}>{skill[0]}</dt>
+        <dt className="text-teal">{skill[0]}</dt>
         <dd>
           ##{" "}
           <span
@@ -51,7 +51,9 @@ const skills = () => {
             {"#".repeat(skill[1])}
           </span>
           <span
-            dangerouslySetInnerHTML={{ __html: "&nbsp;".repeat(10 - skill[1]) }}
+            dangerouslySetInnerHTML={{
+              __html: "&nbsp;".repeat(10 - skill[1]),
+            }}
           ></span>
           ##
         </dd>
@@ -64,26 +66,25 @@ const commands = {
   help: {
     fn: (args) => {
       return (
-        <>
-          <div>
-            Supported commands:
-            <ul>
-              <li>about</li>
-              <li>clear</li>
-              <li>contact</li>
-              <li>download_cv</li>
-              <li>skills</li>
-              <li>repo</li>
-            </ul>
-          </div>
-        </>
+        <div className="text-teal">
+          Supported commands:
+          <ul>
+            <li>about</li>
+            <li>clear</li>
+            <li>contact</li>
+            <li>download_cv</li>
+            <li>projects</li>
+            <li>repo</li>
+            <li>skills</li>
+          </ul>
+        </div>
       );
     },
   },
   about: {
     fn: (args) => {
       return (
-        <>
+        <div className="text-teal">
           <p>Hey!</p>
           <br></br>
           <p>
@@ -91,14 +92,14 @@ const commands = {
             years old with an engineering degree in Industrial Engineering and
             Management, with a B.Sc. in computer science.
           </p>
-        </>
+        </div>
       );
     },
   },
   contact: {
     fn: (args) => {
       return (
-        <>
+        <div className="text-muted">
           <dl>
             <dt>Email</dt>
             <dd>
@@ -115,7 +116,7 @@ const commands = {
               </a>
             </dd>
           </dl>
-        </>
+        </div>
       );
     },
   },
@@ -126,13 +127,74 @@ const commands = {
   },
   skills: {
     fn: (args) => {
-      return <dl>{skills()}</dl>;
+      return <>{skills()}</>;
+    },
+  },
+  projects: {
+    fn: (args) => {
+      return (
+        <div className="text-muted">
+          <span>Some of the projects I have developed are listed below:</span>
+          <dl>
+            <dt className="text-teal">
+              LiUGrade -&nbsp;
+              <a
+                target="_blank"
+                href="https://chrome.google.com/webstore/detail/liugrade/pjhgdnmkdpeddjgaoadfneadfmgljiel?hl=sv"
+                rel="noreferrer"
+              >
+                (link to Google Chrome Webstore)
+              </a>
+            </dt>
+            <dd>
+              Google Chrome extension with ~600 active users. Lets users see
+              their GPA and other stats about their courses on Ladok. Developed
+              in React and Javascript.
+            </dd>
+            <dt className="text-teal">
+              Landing page at Optimal Montage -&nbsp;
+              <a
+                target="_blank"
+                href="https://optimalmontage.se"
+                rel="noreferrer"
+              >
+                Link
+              </a>
+            </dt>
+            <dd>
+              Single side landing page developed with Hugo for maximum
+              performance. Rated 96/100 on Google PageSpeed Insights.
+            </dd>
+            <dt className="text-teal">ERP System at Optimal Montage</dt>
+            <dd>
+              Tailor-made ERP system in ASP.NET, which is integrated with Google
+              G Suite, accounting software and IKEA's proprietary ERP system.
+            </dd>
+            <dt className="text-teal">Database architect at Compular</dt>
+            <dd>
+              Implemented and set the architecture for a SQLite database. Built
+              in the existing C++ codebase.
+            </dd>
+            <dt className="text-teal">
+              This website! -&nbsp;
+              <a
+                target="_blank"
+                href="https://github.com/chickenTurtle/resume"
+                rel="noreferrer"
+              >
+                Link to Git
+              </a>
+            </dt>
+            <dd>Developed in React.</dd>
+          </dl>
+        </div>
+      );
     },
   },
   repo: {
     fn: (args) => {
       return (
-        <>
+        <div className="text-muted">
           The source-code for this project can be found on{" "}
           <a
             target="_blank"
@@ -141,7 +203,7 @@ const commands = {
           >
             github.com/chickenTurle/resume
           </a>
-        </>
+        </div>
       );
     },
   },

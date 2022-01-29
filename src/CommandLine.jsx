@@ -9,7 +9,11 @@ const propTypes = {
 const defaultProps = {
   prompt: "> ",
   commands: {},
-  invalid_command: 'command not found. Try "help" for list of commands.',
+  invalid_command: (
+    <span className="text-muted">
+      command not found. Try "help" for list of commands.
+    </span>
+  ),
 };
 
 class CommandLine extends React.Component {
