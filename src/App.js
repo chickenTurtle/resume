@@ -17,6 +17,14 @@ const banner = {
   Type "help" for a list of commands.`,
 };
 
+const downloadFile = (uri, downloadName) => {
+  const link = document.createElement("a");
+  link.download = downloadName;
+  link.href = uri;
+  link.click();
+  link.remove();
+};
+
 const bold = (text) => {
   return <span className="bold">{text}</span>;
 };
@@ -39,7 +47,7 @@ const skills = () => {
     const green = skill[1] < 5 ? 255 * (skill[1] / 10) : 255;
     return (
       <div id={key}>
-        <dt className="text-teal">{skill[0]}</dt>
+        <dt>{skill[0]}</dt>
         <dd>
           ##{" "}
           <span
@@ -66,7 +74,7 @@ const commands = {
   help: {
     fn: (args) => {
       return (
-        <div className="text-teal">
+        <div className="text-muted">
           Supported commands:
           <ul>
             <li>about</li>
@@ -84,7 +92,7 @@ const commands = {
   about: {
     fn: (args) => {
       return (
-        <div className="text-teal">
+        <div className="text-muted">
           <p>Hey!</p>
           <br></br>
           <p>
@@ -122,7 +130,8 @@ const commands = {
   },
   download_cv: {
     fn: (args) => {
-      return "";
+      downloadFile("CV.pdf", "CV David Forslöf 2022.pdf");
+      return <span className="text-muted">Downloaded CV</span>;
     },
   },
   skills: {
@@ -136,7 +145,7 @@ const commands = {
         <div className="text-muted">
           <span>Some of the projects I have developed are listed below:</span>
           <dl>
-            <dt className="text-teal">
+            <dt>
               LiUGrade -&nbsp;
               <a
                 target="_blank"
@@ -151,7 +160,7 @@ const commands = {
               their GPA and other stats about their courses on Ladok. Developed
               in React and Javascript.
             </dd>
-            <dt className="text-teal">
+            <dt>
               Landing page at Optimal Montage -&nbsp;
               <a
                 target="_blank"
@@ -165,17 +174,17 @@ const commands = {
               Single side landing page developed with Hugo for maximum
               performance. Rated 96/100 on Google PageSpeed Insights.
             </dd>
-            <dt className="text-teal">ERP System at Optimal Montage</dt>
+            <dt>ERP System at Optimal Montage</dt>
             <dd>
               Tailor-made ERP system in ASP.NET, which is integrated with Google
               G Suite, accounting software and IKEA's proprietary ERP system.
             </dd>
-            <dt className="text-teal">Database architect at Compular</dt>
+            <dt>Database architect at Compular</dt>
             <dd>
               Implemented and set the architecture for a SQLite database. Built
               in the existing C++ codebase.
             </dd>
-            <dt className="text-teal">
+            <dt>
               This website! -&nbsp;
               <a
                 target="_blank"

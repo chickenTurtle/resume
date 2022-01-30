@@ -131,17 +131,19 @@ class CommandLine extends React.Component {
       <div style={styles.cli} onClick={this._focus} className="react_cli">
         <div className="banner noselect">{this.props.banner.banner_text}</div>
         <Welcome text={this.props.banner.banner_welcome} />
-        <>{lines}</>
-        <p style={{ display: this.state.typingAllowed ? "block" : "none" }}>
-          <span>{this.props.prompt}</span>
-          <span
-            spellCheck="false"
-            contentEditable="true"
-            onKeyDown={this._handleKeyDown}
-            ref={this.promptRef}
-            style={{ display: "inline-block", verticalAlign: "top" }}
-          ></span>
-        </p>
+        <div className="terminal-output">
+          <>{lines}</>
+          <p style={{ display: this.state.typingAllowed ? "block" : "none" }}>
+            <span>{this.props.prompt}</span>
+            <span
+              spellCheck="false"
+              contentEditable="true"
+              onKeyDown={this._handleKeyDown}
+              ref={this.promptRef}
+              style={{ display: "inline-block", verticalAlign: "top" }}
+            ></span>
+          </p>
+        </div>
       </div>
     );
   }
