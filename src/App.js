@@ -38,7 +38,11 @@ const skills = () => {
     ["Java", 7],
     ["Python", 9],
     ["Go", 5],
+    ["Kubernetes", 6],
+    ["Docker", 6],
     ["Fullstack web development", 8],
+    ["React", 7],
+    ["Vue/Angular", 6],
     ["Ada95", 3],
   ];
 
@@ -98,7 +102,18 @@ const commands = {
           <p>
             As you probably know my name is {bold("David Forslöf")}. I am 24
             years old with an engineering degree in Industrial Engineering and
-            Management, with a B.Sc. in computer science.
+            Management, with a B.Sc. in computer science. I am born and raised
+            in Stockholm with a huge interest in motorsport.
+          </p>
+          <br></br>
+          <p>
+            I have always had a passion for computers and computer science, but
+            it was not until I implemented an ERP system for Optimal Montage on
+            my own that I realised how much I really enjoyed it. Having the
+            possibility to study a B.Sc. in computer science only accelerated my
+            interest in the field, while being able to leverage my knwoledge as
+            a self-taught programmer to further increase my understanding of the
+            field.
           </p>
         </div>
       );
